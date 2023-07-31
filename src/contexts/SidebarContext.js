@@ -1,7 +1,23 @@
-import React from 'react';
+// REACT HOOKS
+import { createContext, useState } from "react";
 
-const SidebarContext = () => {
-  return <div>SidebarContext</div>;
+// CREATE CONTEXT
+export const SidebarContext = createContext();
+
+const SidebarProvider = ({ children }) => {
+  // SIDEBAR STATE
+  const [isOpen, setIsOpen] = useState(false);
+
+  // SIDEBAR CLOSE HANDLE
+  const handleClose = () => {
+    setIsOpen(false);
+  };
+
+  return (
+    <SidebarContext.Provider value={{ isOpen, setIsOpen, handleClose }}>
+      {children}
+    </SidebarContext.Provider>
+  );
 };
 
-export default SidebarContext;
+export default SidebarProvider;
